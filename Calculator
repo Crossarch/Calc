@@ -1,0 +1,220 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * Created by Crossarch on 30.01.2017.
+ */
+public class Calc extends JFrame {
+    int temp = 0;
+    int temp2 = 0;
+    char i = ' ';
+    String op = " ";
+    int Mc = 0;
+
+    Calc(String s) {
+        super(s);
+        setLayout(null);
+        setSize(250, 310);
+        setVisible(true);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        final TextField display = new TextField("");
+        display.setEditable(false);
+        display.setBounds(2, 2, 238, 22);
+        add(display);
+        Button b1 = new Button("1");
+        b1.setBounds(2, 30, 40, 40);
+        add(b1);
+        Button b2 = new Button("2");
+        b2.setBounds(52, 30, 40, 40);
+        add(b2);
+        Button b3 = new Button("3");
+        b3.setBounds(102, 30, 40, 40);
+        add(b3);
+        Button b4 = new Button("4");
+        b4.setBounds(2, 80, 40, 40);
+        add(b4);
+        Button b5 = new Button("5");
+        b5.setBounds(52, 80, 40, 40);
+        add(b5);
+        Button b6 = new Button("6");
+        b6.setBounds(102, 80, 40, 40);
+        add(b6);
+        Button b7 = new Button("7");
+        b7.setBounds(2, 130, 40, 40);
+        add(b7);
+        Button b8 = new Button("8");
+        b8.setBounds(52, 130, 40, 40);
+        add(b8);
+        Button b9 = new Button("9");
+        b9.setBounds(102, 130, 40, 40);
+        add(b9);
+        Button b0 = new Button("0");
+        b0.setBounds(2, 180, 40, 40);
+        add(b0);
+        Button beq = new Button("=");
+        beq.setBounds(52, 180, 40, 40);
+        add(beq);
+        Button bplusminus = new Button ("+/-");
+        bplusminus.setBounds(102, 180, 40, 40);
+        add (bplusminus);
+        Button bplus = new Button("+");
+        bplus.setBounds(152, 30, 80, 40);
+        add(bplus);
+        Button bminus = new Button("-");
+        bminus.setBounds(152, 80, 80, 40);
+        add(bminus);
+        Button bmul = new Button("*");
+        bmul.setBounds(152, 130, 80, 40);
+        add(bmul);
+        Button bdiv = new Button("/");
+        bdiv.setBounds(152, 180, 80, 40);
+        add(bdiv);
+        Button c = new Button("c");
+        c.setBounds(1, 230, 80, 40);
+        add(c);
+        Button M = new Button("M");
+        M.setBounds(82, 230, 80, 40);
+        add(M);
+        Button Mp = new Button("M+");
+        Mp.setBounds(165, 230, 65, 40);
+        add(Mp);
+        b1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "1");
+            }
+        });
+        b2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "2");
+            }
+        });
+        b3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "3");
+            }
+        });
+        b4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "4");
+            }
+        });
+        b5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "5");
+            }
+        });
+        b6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "6");
+            }
+        });
+        b7.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "7");
+            }
+        });
+        b8.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "8");
+            }
+        });
+        b9.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "9");
+            }
+        });
+        b0.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                display.setText(display.getText() + "0");
+            }
+        });
+        bplus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                op = "+";
+                temp = Integer.valueOf(display.getText());
+                display.setText("");
+            }
+        });
+        bplusminus.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent event){
+                StringBuffer s = new StringBuffer (String.valueOf(display.getText()));
+                i = s.charAt(0);
+                if (i != '-'){
+                    display.setText("-" + s);
+                }else
+                {
+                    s.deleteCharAt(0);
+                    display.setText(String.valueOf(s));
+                }}
+        });
+        bminus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                op = "-";
+                temp = Integer.valueOf(display.getText());
+            }
+        });
+        bdiv.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                op = "/";
+                temp = Integer.valueOf(display.getText());
+                display.setText("");
+                temp2 = Integer.valueOf(display.getText());
+            }
+        });
+        bmul.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                op = "*";
+                temp = Integer.valueOf(display.getText());
+                display.setText("");
+                temp2 = Integer.valueOf(display.getText());
+            }
+        });
+        c.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                temp = 0;
+                display.setText("");
+            }
+        });
+        Mp.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                Mc = Integer.valueOf(display.getText());
+                display.setText("");
+            }
+        });
+        M.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                op = "M";
+                temp = Mc;
+                display.setText(Mc + "");
+            }
+        });
+        beq.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                switch (op) {
+                    case "+":
+                        display.setText(String.valueOf(temp + Integer.valueOf(display.getText())));
+                        break;
+                    case "-":
+                        display.setText(String.valueOf(temp - Integer.valueOf(display.getText())));
+                        break;
+                    case "*":
+                        display.setText(String.valueOf(temp * Integer.valueOf(display.getText())));
+
+                        break;
+                    case "/":
+                        display.setText(String.valueOf(temp / Double.valueOf(display.getText())));
+                        break;
+                    case "M":
+                        display.setText(String.valueOf(Mc));
+                }
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new Calc("Calculator_Lab10");
+    }
+}
